@@ -1,13 +1,91 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+}
+h1 {
+    text-align: center;
+    font-size: 40px;
+}
+.CurrentDateBlock {
+    background-color: rgb(238, 238, 238);
+    border-radius: 30px;
+    width: 500px;
+    padding: 10px 0px 10px 22px;
+    margin: 10px;
+}
+h2 {
+    font-size: 20px;
+}
+.AddTaskBlock {
+    background-color: rgb(238, 238, 238);
+    border-radius: 30px;
+    width: 500px;
+    padding: 10px 0px 20px 22px;
+    margin: 10px;
+}
+.AddTaskBlockInputs {
+    width: 380px;
+    display: flex;
+    justify-content: space-between;
+}
+.AddTaskBlockInputs * {
+    background-color: #d4d4d4;
+    border-radius: 8px;
+    border: none;
+    height: 25px;
+    color: rgb(96, 96, 96);
+}
+.AddTaskBlockInputs button:hover {
+    cursor: pointer;
+    background-color: #b0b0b0;
+    color: white;
+}
+.AddTaskBlockInputs *:hover {
+    background-color: #b0b0b0;
+}
+.LineStrip {
+    height: 5px;
+    background-color: #b0b0b0;
+    margin: 10px;
+    border-radius: 10px;
+}
+.FilterMainBlock {
+    background-color: rgb(238, 238, 238);
+    width: 290px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 7px 20px 7px 20px;
+    margin: 10px;
+    border-radius: 30px;
+}
+.FilterMainBlock select {
+    background-color: #d4d4d4;
+    border-radius: 8px;
+    border: none;
+    height: 25px;
+    color: rgb(0, 0, 0);
+}
 .TaskCard {
     border-radius: 30px;
     padding: 15px;
     margin: 10px;
     background-color: rgb(220, 220, 220);
 }
-
 .TaskCardIsOverdue {
     border-radius: 30px;
     padding: 15px;
     margin: 10px;
-    background-color: #f38282;
+    background-color: #f5a1a1;
+}
+.ButtonTaskCard {
+    background-color: #fff5f5;
+    border-radius: 13px;
+    border: none;
+    height: 30px;
+    width: 100px;
+    color: #000000;
+}
+.ButtonTaskCard:hover {
+    cursor: pointer;
+    background-color: #af9090;
+    color: white;
 }

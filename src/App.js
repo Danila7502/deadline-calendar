@@ -58,16 +58,19 @@ function App() {
   return (
     <div>
       <h1>Календарь дедлайнов</h1>
-      <div style={{ border: '1px solid #ccc', padding: '16px', margin: '16px 0' }}>
+      <div className='CurrentDateBlock'>
         <h2>Текущая дата: {currentDate}</h2>
       </div>
-      <div style={{ border: '1px solid #ccc', padding: '16px', margin: '16px 0' }}>
+      <div className='AddTaskBlock'>
         <h2>Добавить задание</h2>
-        <input placeholder="Название" value={title} onChange={e => setTitle(e.target.value)} />
-        <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} />
-        <button onClick={addTask}>Добавить</button>
+        <div className='AddTaskBlockInputs'>
+          <input placeholder="Название" value={title} onChange={e => setTitle(e.target.value)} />
+          <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} />
+          <button onClick={addTask}>Добавить</button>
+        </div>
       </div>
-      <div style={{ border: '1px solid #ccc', padding: '16px', margin: '16px 0' }}>
+      <div className='LineStrip'></div>
+      <div className='FilterMainBlock'>
         <label htmlFor="filter">Фильтр: </label>
         <select
           id="filter"

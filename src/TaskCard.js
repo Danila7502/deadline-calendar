@@ -13,9 +13,9 @@ const TaskCard = ({ title, deadline, onDelete }) => {
 
   return (
     <div className={cardClassName}>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       <p>Дедлайн: {formatDate(deadline)}</p>
-      <button onClick={onDelete}>Удалить</button>
+      <button className='ButtonTaskCard' onClick={onDelete}>Удалить</button>
     </div>
   );
 };
