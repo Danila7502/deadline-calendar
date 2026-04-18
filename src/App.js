@@ -32,6 +32,8 @@ function App() {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
+  const sortedTasks = [...tasks].sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+
   return (
     <div>
       <h1>Календарь дедлайнов</h1>
@@ -44,7 +46,7 @@ function App() {
         <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} />
         <button onClick={addTask}>Добавить</button>
       </div>
-      {tasks.map(task => (
+      {sortedTasks.map(task => (
         <TaskCard key={task.id} title={task.title} deadline={task.deadline} onDelete={() => deleteTask(task.id)} />
       ))}
     </div>
