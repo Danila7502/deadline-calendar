@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TaskCard from './TaskCard';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem('tasks');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [title, setTitle] = useState('');
   const [deadline, setDeadline] = useState('');
 
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+  
   const addTask = () => {
     if (!title || !deadline) return;
     const newTask = { id: Date.now(), title, deadline };
@@ -15,7 +22,7 @@ function App() {
   };
 
   const deleteTask = (id) => {
-  setTasks(tasks.filter(task => task.id !== id));
+    setTasks(tasks.filter(task => task.id !== id));
   };
 
   return (
