@@ -14,6 +14,10 @@ function App() {
     setDeadline('');
   };
 
+  const deleteTask = (id) => {
+  setTasks(tasks.filter(task => task.id !== id));
+  };
+
   return (
     <div>
       <h1>Календарь дедлайнов</h1>
@@ -24,7 +28,7 @@ function App() {
         <button onClick={addTask}>Добавить</button>
       </div>
       {tasks.map(task => (
-        <TaskCard key={task.id} title={task.title} deadline={task.deadline} />
+        <TaskCard key={task.id} title={task.title} deadline={task.deadline} onDelete={() => deleteTask(task.id)} />
       ))}
     </div>
   );
