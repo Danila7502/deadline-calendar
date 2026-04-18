@@ -8,6 +8,20 @@ function App() {
   const [title, setTitle] = useState('');
   const [deadline, setDeadline] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleDateString('ru-RU'));
+  const [filter, setFilter] = useState('all');
+
+  const isCurrentWeek = (deadline) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const weekLater = new Date(today);
+    weekLater.setDate(today.getDate() + 7);
+
+    const deadlineDate = new Date(deadline);
+    deadlineDate.setHours(0, 0, 0, 0);
+
+    return deadlineDate >= today && deadlineDate <= weekLater;
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,6 +48,13 @@ function App() {
 
   const sortedTasks = [...tasks].sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
 
+  let filteredTasks = sortedTasks;
+  if (filter === 'week') {
+    filteredTasks = sortedTasks.filter(task => isCurrentWeek(task.deadline));
+  } else if (filter === 'overdue') {
+    filteredTasks = sortedTasks.filter(task => new Date(task.deadline) < new Date());
+  }
+
   return (
     <div>
       <h1>Календарь дедлайнов</h1>
@@ -46,7 +67,19 @@ function App() {
         <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} />
         <button onClick={addTask}>Добавить</button>
       </div>
-      {sortedTasks.map(task => (
+      <div style={{ border: '1px solid #ccc', padding: '16px', margin: '16px 0' }}>
+        <label htmlFor="filter">Фильтр: </label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+        <option value="all">Все задания</option>
+        <option value="week">Задания на текущей неделе</option>
+        <option value="overdue">Просроченные</option>
+        </select>
+      </div>
+      {filteredTasks.map(task => (
         <TaskCard key={task.id} title={task.title} deadline={task.deadline} onDelete={() => deleteTask(task.id)} />
       ))}
     </div>
