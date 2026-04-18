@@ -1,10 +1,31 @@
+import { useState } from 'react';
 import TaskCard from './TaskCard';
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState('');
+  const [deadline, setDeadline] = useState('');
+
+  const addTask = () => {
+    if (!title || !deadline) return;
+    const newTask = { id: Date.now(), title, deadline };
+    setTasks([...tasks, newTask]);
+    setTitle('');
+    setDeadline('');
+  };
+
   return (
     <div>
       <h1>Календарь дедлайнов</h1>
-      <TaskCard title="Пример" deadline="2025-04-20" />
+      <div style={{ border: '1px solid #ccc', padding: '16px', margin: '16px 0' }}>
+        <h2>Добавить задание</h2>
+        <input placeholder="Название" value={title} onChange={e => setTitle(e.target.value)} />
+        <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} />
+        <button onClick={addTask}>Добавить</button>
+      </div>
+      {tasks.map(task => (
+        <TaskCard key={task.id} title={task.title} deadline={task.deadline} />
+      ))}
     </div>
   );
 }
