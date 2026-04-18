@@ -1,0 +1,13 @@
+.TaskCard {
+    border-radius: 30px;
+    padding: 15px;
+    margin: 10px;
+    background-color: rgb(220, 220, 220);
+}
+
+.TaskCardIsOverdue {
+    border-radius: 30px;
+    padding: 15px;
+    margin: 10px;
+    background-color: #f38282;
+}
